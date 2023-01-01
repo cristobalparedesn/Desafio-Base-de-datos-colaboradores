@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import {DataColaboradores} from './api/DataColaboradores';
+import AgregarColaborador from './components/AgregarColaborador';
+import ListaColaboradores from './components/ListaColaboradores';
 
-function App() {
+const App = () => {
+
+  // Lista de Colboradores
+  const [colaboradores, setColaboradores] = useState(DataColaboradores);
+  
+  // Agregar un Colaborador
+  const [nombre, setNombre] = useState("");
+  const [email, setEmail] = useState("");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <AgregarColaborador nombre={nombre} setNombre={setNombre} email={email} setEmail={setEmail} colaboradores={colaboradores} setColaboradores={setColaboradores}/>
+      <ListaColaboradores colaboradores={colaboradores} />
     </div>
-  );
+  )
 }
 
 export default App;
