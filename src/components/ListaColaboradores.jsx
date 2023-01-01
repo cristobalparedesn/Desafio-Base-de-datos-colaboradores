@@ -1,11 +1,17 @@
-const ListaColaboradores = ({colaboradores}) =>{
+const ListaColaboradores = ({colaboradores, buscar}) =>{
   
   return(  
-    <div>
-      <h3>LISTA DE COLABORADORES</h3>
+    <div className="container">
+      <h4>LISTA DE COLABORADORES</h4>
       <ul>
         {
-          colaboradores.map((item) => {
+          colaboradores
+          .filter((item) =>{
+            return item.nombre
+              .toLowerCase()
+              .includes(buscar.toLowerCase());
+          })
+          .map((item) => {
             return <li key={item.id}>{item.nombre} - {item.correo}</li>;
           })
         }
